@@ -3,19 +3,19 @@ $users = $viewData['users'];
 ?>
 <h1 class="page-header">Users</h1>
 
-<a href="/users/insert">Insert</a>
+<a href="/crud/insert">Insert</a>
 <div class="table-responsive">
 <table class="table table-striped">
     <?php foreach($users as $id => $user):?>
         <tr>
            <?php 
-            $user = explode(",", $user);
+            //$user = explode(",", $user);
             foreach ($user as $value):?>               
                 <td><?php echo $value;?></td>
             <?php endforeach; ?>
             <td>
-                <a href="/users/update/id/<?=$id;?>">Update</a> | 
-                <a href="/users/delete/id/<?=$id;?>">Delete</a>
+                <a href="/crud/update/id/<?=$id;?>">Update</a> | 
+                <a href="/crud/delete/id/<?=$id;?>">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

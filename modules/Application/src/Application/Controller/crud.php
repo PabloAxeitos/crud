@@ -12,8 +12,8 @@ switch($request['action'])
 {
     case 'index':
     case 'select':
-        $users = getUsers($config['database']);        
-        $content = renderView("../modules/Application/views/users/select.phtml",
+        $users = getUsers($config['database']);  
+        $content = renderView("../modules/Application/views/crud/select.phtml",
                               array('users'=>$users)
                     );   
     break;
@@ -21,12 +21,13 @@ switch($request['action'])
     case 'insert':        
         if($_POST)
         {              
-            $user = setUser($_POST);
-            header("Location: /users/select");
+            $user = setUser($_POST, $config['database']);
+            header("Location: /crud/select");
         }
         else 
         {
-            $content = renderView("../modules/Application/views/users/insert.phtml");
+            $content = renderView("../modules/Application/views/crud/insert.phtml",
+                                  array('configDatabase'=>$config['database']));
         }
     break;
 
@@ -35,12 +36,12 @@ switch($request['action'])
         if ($_POST)
         {
             $user = putUser($_POST['id'], $_POST);
-            header("Location: /users/select");
+            header("Location: /crud/select");
         }
         else
         {                       
             $user = getUser($request['params']['id']);
-            $content = renderView("../modules/Application/views/users/update.phtml",
+            $content = renderView("../modules/Application/views/crud/update.phtml",
                               array('fieldsLine'=>$user)
                     );
         }
@@ -54,12 +55,12 @@ switch($request['action'])
             {
                 deleteUser($_POST['id']);
             }               
-            header("Location: /users/select");    
+            header("Location: /crud/select");    
         }
         else
         {     
             $user = getUser($request['params']['id']);
-            $content = renderView("../modules/Application/views/users/delete.phtml",
+            $content = renderView("../modules/Application/views/crud/delete.phtml",
                 array('user'=>$user)
             );
         }

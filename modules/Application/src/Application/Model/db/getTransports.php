@@ -1,6 +1,6 @@
 <?php
 
-function getUsers($config)
+function getTransports($config)
 {
     // Conectarse al DBMS
         $link = mysqli_connect($config['host'], 
@@ -12,19 +12,19 @@ function getUsers($config)
         mysqli_select_db($link, $config['database']);
         
     // Crear la consulta
-        $query = "SELECT * FROM user";
+        $query = "SELECT * FROM transport";
 
     // Enviar la consulta
         $result = mysqli_query($link, $query);
     
     // Recorrer el recordset
-        while($row = mysqli_fetch_assoc($result))
+        while($row = mysqli_fetch_array($result))
         {
-            $users[]=$row;
+            $datas[]=$row;
         }
     
     // Cerra la coneccion
         mysqli_close($link);
         
-    return $users;
+    return $datas;
 }

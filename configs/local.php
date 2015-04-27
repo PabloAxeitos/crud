@@ -2,8 +2,8 @@
 
 return array(
     'database' => array('host'=>'localhost',
-                        'user'=>'php',
-                        'password'=>'123456',
+                        'user'=>'root',
+                        'password'=>'0C34n14',
                         'database' => 'users'
                         )
     
